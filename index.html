@@ -3,314 +3,449 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jian Huang | AI & Developer Portfolio</title>
-    <!-- Tailwind CSS for styling -->
+    <title>JIAN HUANG | AI & Developer Portfolio</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome for Icons -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Custom Styles */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f3f4f6;
-        }
-        .sidebar {
-            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
-            color: white;
-        }
-        .nav-item {
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .nav-item:hover, .nav-item.active {
-            background-color: #3b82f6;
-            padding-left: 1.5rem;
-        }
-        .content-section {
-            display: none;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-        .content-section.active {
-            display: block;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .skill-bar-bg {
-            background-color: #e5e7eb;
-            border-radius: 9999px;
-            height: 12px;
-            overflow: hidden;
-        }
-        .skill-bar-fill {
-            height: 100%;
-            border-radius: 9999px;
-            background-color: #10b981;
-            transition: width 1s ease-in-out;
-        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8fafc; }
+        .sidebar { background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); color: white; }
+        .nav-item { transition: all 0.3s ease; cursor: pointer; }
+        .nav-item:hover, .nav-item.active { background-color: #3b82f6; padding-left: 1.5rem; }
+        .content-section { display: none; animation: fadeIn 0.4s ease-out; }
+        .content-section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .skill-bar-bg { background-color: #e2e8f0; border-radius: 9999px; height: 10px; overflow: hidden; }
+        .skill-bar-fill { height: 100%; border-radius: 9999px; transition: width 1s ease-in-out; }
+        
+        /* Language Toggle Classes */
+        .lang-zh { display: none; } /* Default hide Chinese */
     </style>
 </head>
-<body class="flex h-screen overflow-hidden">
+<body class="flex h-screen overflow-hidden text-slate-800">
 
-    <!-- Sidebar (Left) -->
-    <aside class="sidebar w-64 flex-shrink-0 flex flex-col justify-between hidden md:flex h-full shadow-xl">
+    <!-- Sidebar -->
+    <aside class="sidebar w-64 flex-shrink-0 flex flex-col justify-between hidden md:flex h-full shadow-2xl relative">
         <div class="p-6 text-center">
-            <!-- 头像图片链接，可替换为你自己的 -->
-            <img src="https://cdn-icons-png.flaticon.com/512/4140/4140037.png" alt="Profile" class="w-24 h-24 rounded-full mx-auto border-4 border-blue-500 mb-4 bg-white p-1">
-            <h1 class="text-xl font-bold">Jian Huang</h1>
-            <p class="text-blue-300 text-sm">AI Master's Candidate</p>
-            <p class="text-gray-400 text-xs mt-1">Monash University, Malaysia</p>
+            <img src="https://cdn-icons-png.flaticon.com/512/4140/4140037.png" alt="Profile" class="w-24 h-24 rounded-full mx-auto border-4 border-blue-500 mb-4 bg-white p-1 shadow-lg">
+            <h1 class="text-xl font-bold tracking-wide text-white">JIAN HUANG</h1>
+            <p class="text-blue-300 text-sm mt-1">
+                <span class="lang-en">AI Master's Candidate</span>
+                <span class="lang-zh">人工智能硕士在读</span>
+            </p>
+            <p class="text-gray-400 text-xs mt-1">Monash University</p>
         </div>
 
-        <nav class="flex-1 px-4 py-4 space-y-2">
-            <div class="nav-item active rounded p-3 flex items-center gap-3" onclick="showSection('home', this)">
-                <i class="fas fa-home w-6"></i> <span>Home</span>
+        <nav class="flex-1 px-4 space-y-2 mt-4">
+            <div class="nav-item active rounded-lg p-3 flex items-center gap-3" onclick="showSection('home', this)">
+                <i class="fas fa-home w-5 text-center"></i> 
+                <span class="lang-en">Home</span><span class="lang-zh">主页</span>
             </div>
-            <div class="nav-item rounded p-3 flex items-center gap-3" onclick="showSection('projects', this)">
-                <i class="fas fa-laptop-code w-6"></i> <span>Projects</span>
+            <div class="nav-item rounded-lg p-3 flex items-center gap-3" onclick="showSection('projects', this)">
+                <i class="fas fa-code w-5 text-center"></i> 
+                <span class="lang-en">Projects</span><span class="lang-zh">项目经验</span>
             </div>
-            <div class="nav-item rounded p-3 flex items-center gap-3" onclick="showSection('resume', this)">
-                <i class="fas fa-file-alt w-6"></i> <span>Resume</span>
+            <div class="nav-item rounded-lg p-3 flex items-center gap-3" onclick="showSection('resume', this)">
+                <i class="fas fa-file-alt w-5 text-center"></i> 
+                <span class="lang-en">Resume</span><span class="lang-zh">个人简历</span>
             </div>
-            <div class="nav-item rounded p-3 flex items-center gap-3" onclick="showSection('contact', this)">
-                <i class="fas fa-envelope w-6"></i> <span>Contact</span>
+            <div class="nav-item rounded-lg p-3 flex items-center gap-3" onclick="showSection('contact', this)">
+                <i class="fas fa-paper-plane w-5 text-center"></i> 
+                <span class="lang-en">Contact</span><span class="lang-zh">联系我</span>
             </div>
         </nav>
 
-        <div class="p-6 text-xs text-gray-500 text-center border-t border-gray-700">
+        <!-- Language Toggle Button -->
+        <div class="px-6 pb-2">
+            <button onclick="toggleLanguage()" class="w-full py-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-xs font-bold text-white transition flex justify-center items-center gap-2 border border-slate-500">
+                <i class="fas fa-language text-lg"></i>
+                <span class="lang-en">Switch to 中文</span>
+                <span class="lang-zh">Switch to English</span>
+            </button>
+        </div>
+
+        <div class="p-6 text-xs text-gray-500 text-center border-t border-slate-700 bg-slate-900/50">
             <p>📍 Subang Jaya, Malaysia</p>
-            <p class="mt-2">Built with HTML & Tailwind</p>
         </div>
     </aside>
 
     <!-- Mobile Header -->
-    <div class="md:hidden fixed w-full bg-slate-800 text-white z-50 flex justify-between items-center p-4 shadow-md top-0">
-        <span class="font-bold text-lg">Jian Huang</span>
-        <button onclick="toggleMobileMenu()" class="text-white"><i class="fas fa-bars text-2xl"></i></button>
+    <div class="md:hidden fixed w-full bg-slate-900 text-white z-50 flex justify-between items-center p-4 shadow-md top-0">
+        <span class="font-bold text-lg tracking-wide">JIAN HUANG</span>
+        <div class="flex items-center gap-4">
+            <button onclick="toggleLanguage()" class="text-sm bg-slate-700 px-2 py-1 rounded">EN/中</button>
+            <button onclick="toggleMobileMenu()"><i class="fas fa-bars text-2xl"></i></button>
+        </div>
     </div>
 
     <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 bg-slate-900 bg-opacity-95 z-40 hidden flex flex-col justify-center items-center space-y-8 text-white text-xl md:hidden">
-        <button onclick="mobileNav('home')" class="hover:text-blue-400">Home</button>
-        <button onclick="mobileNav('projects')" class="hover:text-blue-400">Projects</button>
-        <button onclick="mobileNav('resume')" class="hover:text-blue-400">Resume</button>
-        <button onclick="mobileNav('contact')" class="hover:text-blue-400">Contact</button>
-        <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 text-3xl">&times;</button>
+    <div id="mobile-menu" class="fixed inset-0 bg-slate-900 bg-opacity-95 z-40 hidden flex flex-col justify-center items-center space-y-8 text-white text-xl md:hidden transition-opacity">
+        <button onclick="mobileNav('home')" class="hover:text-blue-400"><span class="lang-en">Home</span><span class="lang-zh">主页</span></button>
+        <button onclick="mobileNav('projects')" class="hover:text-blue-400"><span class="lang-en">Projects</span><span class="lang-zh">项目经验</span></button>
+        <button onclick="mobileNav('resume')" class="hover:text-blue-400"><span class="lang-en">Resume</span><span class="lang-zh">个人简历</span></button>
+        <button onclick="mobileNav('contact')" class="hover:text-blue-400"><span class="lang-en">Contact</span><span class="lang-zh">联系我</span></button>
+        <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 text-3xl text-gray-400 hover:text-white">&times;</button>
     </div>
 
-    <!-- Main Content Area -->
-    <main class="flex-1 overflow-y-auto p-8 md:p-12 relative mt-16 md:mt-0">
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto p-6 md:p-12 mt-16 md:mt-0 scroll-smooth">
         
-        <!-- SECTION: HOME -->
-        <div id="home" class="content-section active max-w-4xl mx-auto">
-            <header class="mb-10">
-                <h2 class="text-4xl font-bold text-gray-800 mb-2">👋 Hello, I'm Jian.</h2>
-                <h3 class="text-xl text-blue-600 font-semibold">Bridging Human Creativity & AI Logic</h3>
+        <!-- === HOME === -->
+        <div id="home" class="content-section active max-w-5xl mx-auto">
+            <header class="mb-10 animate-fade-in-up">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-slate-800 mb-3">
+                    <span class="lang-en">👋 Hello, I'm JIAN.</span>
+                    <span class="lang-zh">👋 你好，我是 JIAN。</span>
+                </h2>
+                <h3 class="text-xl md:text-2xl text-blue-600 font-semibold">
+                    <span class="lang-en">Bridging Human Creativity & AI Logic</span>
+                    <span class="lang-zh">连接人类创意与 AI 逻辑</span>
+                </h3>
             </header>
             
-            <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-blue-500 mb-8">
-                <p class="text-gray-700 leading-relaxed text-lg">
-                    I am a Master's student in <strong>Artificial Intelligence</strong> with a unique background in <strong>Media Operations</strong>. 
-                    I combine <span class="bg-yellow-100 px-1 rounded">technical coding skills (Python/HarmonyOS)</span> with 
-                    <span class="bg-yellow-100 px-1 rounded">linguistic sensitivity</span> to build high-quality AI solutions.
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border-l-4 border-blue-500 mb-10">
+                <p class="text-slate-600 leading-relaxed text-lg">
+                    <span class="lang-en">
+                        I am a Master's student in <strong>Artificial Intelligence</strong> with a unique background in <strong>Media Operations</strong>. 
+                        I combine <span class="bg-yellow-100 px-1 rounded text-slate-800">technical coding skills (Python/HarmonyOS)</span> with 
+                        <span class="bg-yellow-100 px-1 rounded text-slate-800">linguistic sensitivity</span> to build high-quality AI solutions.
+                    </span>
+                    <span class="lang-zh">
+                        我是<strong>人工智能专业</strong>的在读硕士，同时拥有独特的<strong>新媒体运营</strong>背景。
+                        我擅长将<span class="bg-yellow-100 px-1 rounded text-slate-800">技术编程能力 (Python/鸿蒙开发)</span> 与 
+                        <span class="bg-yellow-100 px-1 rounded text-slate-800">语言敏感度</span>相结合，构建高质量的 AI 解决方案。
+                    </span>
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                <div class="bg-white p-5 rounded-lg shadow hover:shadow-md transition">
-                    <div class="text-blue-500 text-3xl mb-3"><i class="fas fa-robot"></i></div>
-                    <h4 class="font-bold text-gray-800 mb-2">AI & Data</h4>
-                    <p class="text-gray-600 text-sm">Python, Pandas, Web Scraping, LLM Fine-tuning concepts.</p>
+                <!-- Card 1 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-slate-100">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 text-2xl mb-4"><i class="fas fa-robot"></i></div>
+                    <h4 class="font-bold text-slate-800 mb-2 text-lg">
+                        <span class="lang-en">AI & Data</span>
+                        <span class="lang-zh">AI 与数据</span>
+                    </h4>
+                    <p class="text-slate-500 text-sm leading-relaxed">
+                        <span class="lang-en">Python, Pandas, Web Scraping, LLM Fine-tuning concepts.</span>
+                        <span class="lang-zh">Python, Pandas 数据处理, 网页爬虫, 大模型微调概念。</span>
+                    </p>
                 </div>
-                <div class="bg-white p-5 rounded-lg shadow hover:shadow-md transition">
-                    <div class="text-indigo-500 text-3xl mb-3"><i class="fas fa-mobile-alt"></i></div>
-                    <h4 class="font-bold text-gray-800 mb-2">Development</h4>
-                    <p class="text-gray-600 text-sm">HarmonyOS (ArkTS), Java, Mobile App Logic.</p>
+                <!-- Card 2 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-slate-100">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600 text-2xl mb-4"><i class="fas fa-mobile-alt"></i></div>
+                    <h4 class="font-bold text-slate-800 mb-2 text-lg">
+                        <span class="lang-en">Development</span>
+                        <span class="lang-zh">应用开发</span>
+                    </h4>
+                    <p class="text-slate-500 text-sm leading-relaxed">
+                        <span class="lang-en">HarmonyOS (ArkTS), Java, Mobile App Logic, UI/UX.</span>
+                        <span class="lang-zh">鸿蒙原生开发 (ArkTS), Java, 移动端逻辑与交互设计。</span>
+                    </p>
                 </div>
-                <div class="bg-white p-5 rounded-lg shadow hover:shadow-md transition">
-                    <div class="text-green-500 text-3xl mb-3"><i class="fas fa-comments"></i></div>
-                    <h4 class="font-bold text-gray-800 mb-2">Communication</h4>
-                    <p class="text-gray-600 text-sm">English (Professional), Chinese (Native), Content Strategy.</p>
+                <!-- Card 3 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-slate-100">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center text-green-600 text-2xl mb-4"><i class="fas fa-comments"></i></div>
+                    <h4 class="font-bold text-slate-800 mb-2 text-lg">
+                        <span class="lang-en">Communication</span>
+                        <span class="lang-zh">沟通与策略</span>
+                    </h4>
+                    <p class="text-slate-500 text-sm leading-relaxed">
+                        <span class="lang-en">English (Professional), Chinese (Native), Content Strategy.</span>
+                        <span class="lang-zh">专业英语, 母语中文, 内容策略与跨部门协作。</span>
+                    </p>
                 </div>
             </div>
 
-            <h3 class="text-2xl font-bold text-gray-800 mb-6">📊 Technical Proficiency</h3>
-            <div class="space-y-4 bg-white p-6 rounded-lg shadow-sm">
+            <h3 class="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+                <i class="fas fa-chart-bar text-blue-500"></i>
+                <span class="lang-en">Technical Proficiency</span>
+                <span class="lang-zh">技术能力图谱</span>
+            </h3>
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 space-y-6">
                 <div>
-                    <div class="flex justify-between mb-1">
-                        <span class="text-sm font-medium text-gray-700">Python (Data Analysis/Scraping)</span>
-                        <span class="text-sm font-medium text-gray-700">85%</span>
+                    <div class="flex justify-between mb-2">
+                        <span class="font-semibold text-slate-700 text-sm">Python (Data Analysis/Scraping)</span>
+                        <span class="font-bold text-blue-600 text-sm">85%</span>
                     </div>
-                    <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 85%"></div></div>
+                    <div class="skill-bar-bg"><div class="skill-bar-fill bg-blue-500" style="width: 85%"></div></div>
                 </div>
                 <div>
-                    <div class="flex justify-between mb-1">
-                        <span class="text-sm font-medium text-gray-700">HarmonyOS (ArkTS)</span>
-                        <span class="text-sm font-medium text-gray-700">90%</span>
+                    <div class="flex justify-between mb-2">
+                        <span class="font-semibold text-slate-700 text-sm">HarmonyOS (ArkTS/ArkUI)</span>
+                        <span class="font-bold text-indigo-600 text-sm">90%</span>
                     </div>
-                    <div class="skill-bar-bg"><div class="skill-bar-fill bg-blue-500" style="width: 90%"></div></div>
+                    <div class="skill-bar-bg"><div class="skill-bar-fill bg-indigo-500" style="width: 90%"></div></div>
                 </div>
                 <div>
-                    <div class="flex justify-between mb-1">
-                        <span class="text-sm font-medium text-gray-700">Prompt Engineering</span>
-                        <span class="text-sm font-medium text-gray-700">80%</span>
+                    <div class="flex justify-between mb-2">
+                        <span class="font-semibold text-slate-700 text-sm">Prompt Engineering (LLM)</span>
+                        <span class="font-bold text-purple-600 text-sm">80%</span>
                     </div>
                     <div class="skill-bar-bg"><div class="skill-bar-fill bg-purple-500" style="width: 80%"></div></div>
                 </div>
-                <div>
-                    <div class="flex justify-between mb-1">
-                        <span class="text-sm font-medium text-gray-700">English Communication</span>
-                        <span class="text-sm font-medium text-gray-700">85%</span>
-                    </div>
-                    <div class="skill-bar-bg"><div class="skill-bar-fill bg-yellow-500" style="width: 85%"></div></div>
-                </div>
             </div>
         </div>
 
-        <!-- SECTION: PROJECTS -->
-        <div id="projects" class="content-section max-w-4xl mx-auto">
-            <h2 class="text-3xl font-bold text-gray-800 mb-8">💻 Project Experience</h2>
+        <!-- === PROJECTS === -->
+        <div id="projects" class="content-section max-w-5xl mx-auto">
+            <h2 class="text-3xl font-bold text-slate-800 mb-8 flex items-center gap-3">
+                <span class="w-2 h-8 bg-blue-600 rounded-full"></span>
+                <span class="lang-en">Project Experience</span>
+                <span class="lang-zh">项目经验</span>
+            </h2>
             
-            <!-- Project 1 -->
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-8 flex flex-col md:flex-row border border-gray-100">
-                <div class="p-8 flex-1">
-                    <div class="flex justify-between items-start">
+            <!-- Project 1: Qinban -->
+            <div class="bg-white rounded-2xl shadow-sm overflow-hidden mb-8 border border-slate-200 hover:shadow-md transition">
+                <div class="p-8">
+                    <div class="flex flex-col md:flex-row justify-between items-start mb-4">
                         <div>
-                            <h3 class="text-2xl font-bold text-gray-800">Qinban (HarmonyOS Native App)</h3>
-                            <p class="text-sm text-blue-600 font-semibold mb-4">Independent Full-Stack Developer</p>
+                            <h3 class="text-2xl font-bold text-slate-800">
+                                <span class="lang-en">Qinban (HarmonyOS Native App)</span>
+                                <span class="lang-zh">亲伴 (鸿蒙原生应用)</span>
+                            </h3>
+                            <p class="text-sm text-blue-600 font-semibold mt-1">
+                                <span class="lang-en">Role: Independent Full-Stack Developer</span>
+                                <span class="lang-zh">角色：独立全栈开发者</span>
+                            </p>
                         </div>
-                        <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full font-bold">MVP Delivered</span>
+                        <span class="mt-2 md:mt-0 bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full font-bold uppercase tracking-wider">MVP Delivered</span>
                     </div>
                     
-                    <p class="text-gray-600 mb-4">
-                        A family connection app built on the HarmonyOS ecosystem to enhance interaction between family members.
+                    <p class="text-slate-600 mb-6 leading-relaxed">
+                        <span class="lang-en">A family connection app built on the HarmonyOS ecosystem to enhance interaction between family members through digital means.</span>
+                        <span class="lang-zh">一款基于鸿蒙生态的家庭生活辅助应用，旨在通过数字化手段连接家庭成员，解决亲情互动与信息同步需求。</span>
                     </p>
                     
-                    <div class="mb-4">
-                        <h4 class="font-bold text-gray-700 text-sm mb-2">Key Contributions:</h4>
-                        <ul class="list-disc list-inside text-gray-600 text-sm space-y-1">
-                            <li>Managed full lifecycle from UI/UX design to logic implementation.</li>
-                            <li>Implemented <strong>distributed data management</strong> for syncing.</li>
-                            <li>Validated stability on real devices (Beta).</li>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 mb-6">
+                        <h4 class="font-bold text-slate-700 text-sm mb-3">
+                            <span class="lang-en">Key Contributions:</span>
+                            <span class="lang-zh">核心贡献：</span>
+                        </h4>
+                        <ul class="list-disc list-inside text-slate-600 text-sm space-y-2">
+                            <li>
+                                <span class="lang-en"><strong>Full-Cycle Dev:</strong> Managed entire lifecycle from UI/UX design to logic implementation using ArkTS.</span>
+                                <span class="lang-zh"><strong>全流程开发：</strong> 使用 ArkTS 独立完成从需求分析、UI设计到代码实现的完整流程。</span>
+                            </li>
+                            <li>
+                                <span class="lang-en"><strong>Distributed Data:</strong> Implemented HarmonyOS distributed data management for seamless syncing.</span>
+                                <span class="lang-zh"><strong>分布式数据：</strong> 利用鸿蒙分布式特性，实现了多设备间的数据实时同步。</span>
+                            </li>
+                            <li>
+                                <span class="lang-en"><strong>Validation:</strong> Successfully built and validated stability on real devices (Beta Testing).</span>
+                                <span class="lang-zh"><strong>真机验证：</strong> 完成了测试版 (Beta) 打包与真机调试，验证了技术可行性。</span>
+                            </li>
                         </ul>
                     </div>
                     
-                    <div class="flex gap-2 mt-4">
-                        <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">ArkTS</span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">ArkUI</span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">DevEco Studio</span>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-medium">ArkTS</span>
+                        <span class="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-medium">ArkUI</span>
+                        <span class="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-medium">DevEco Studio</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Project 2 -->
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-8 flex flex-col md:flex-row border border-gray-100">
-                <div class="p-8 flex-1">
-                    <div class="flex justify-between items-start">
+            <!-- Project 2: Python Script -->
+            <div class="bg-white rounded-2xl shadow-sm overflow-hidden mb-8 border border-slate-200 hover:shadow-md transition">
+                <div class="p-8">
+                    <div class="flex flex-col md:flex-row justify-between items-start mb-4">
                         <div>
-                            <h3 class="text-2xl font-bold text-gray-800">Automated Web Data Pipeline</h3>
-                            <p class="text-sm text-purple-600 font-semibold mb-4">Data Engineering & Automation</p>
+                            <h3 class="text-2xl font-bold text-slate-800">
+                                <span class="lang-en">Automated Web Data Pipeline</span>
+                                <span class="lang-zh">自动化网络数据爬取管线</span>
+                            </h3>
+                            <p class="text-sm text-purple-600 font-semibold mt-1">
+                                <span class="lang-en">Role: Data Engineering & Automation</span>
+                                <span class="lang-zh">角色：数据工程与自动化</span>
+                            </p>
                         </div>
-                        <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full font-bold">Python Script</span>
+                        <span class="mt-2 md:mt-0 bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full font-bold uppercase tracking-wider">Python Script</span>
                     </div>
                     
-                    <p class="text-gray-600 mb-4">
-                        Designed a Python script to automate the extraction of unstructured data from web sources for analysis.
+                    <p class="text-slate-600 mb-6 leading-relaxed">
+                        <span class="lang-en">Designed a Python script to automate the extraction of unstructured data from web sources for analysis.</span>
+                        <span class="lang-zh">设计并编写 Python 脚本，自动化从非结构化网页源中提取数据，用于后续分析。</span>
                     </p>
                     
-                    <div class="bg-slate-800 p-4 rounded-md mb-4 font-mono text-xs text-green-400 overflow-x-auto">
-                        <p># Sample Logic</p>
-                        <p>import pandas as pd</p>
-                        <p>def clean_data(raw_file):</p>
-                        <p>&nbsp;&nbsp;df = pd.read_csv(raw_file)</p>
-                        <p>&nbsp;&nbsp;df.dropna(inplace=True) # Remove nulls</p>
-                        <p>&nbsp;&nbsp;return df</p>
+                    <div class="bg-slate-900 p-4 rounded-xl mb-6 font-mono text-xs text-green-400 overflow-x-auto shadow-inner">
+                        <p class="opacity-50 mb-2"># Sample Logic Presentation</p>
+                        <p><span class="text-purple-400">import</span> pandas <span class="text-purple-400">as</span> pd</p>
+                        <p><span class="text-purple-400">from</span> bs4 <span class="text-purple-400">import</span> BeautifulSoup</p>
+                        <p class="mt-2"><span class="text-blue-400">def</span> <span class="text-yellow-300">process_data</span>(html_content):</p>
+                        <p>&nbsp;&nbsp;soup = BeautifulSoup(html_content, <span class="text-orange-300">'html.parser'</span>)</p>
+                        <p>&nbsp;&nbsp;data = [item.text <span class="text-purple-400">for</span> item <span class="text-purple-400">in</span> soup.find_all(<span class="text-orange-300">'div'</span>, class_=<span class="text-orange-300">'entry'</span>)]</p>
+                        <p>&nbsp;&nbsp;df = pd.DataFrame(data)</p>
+                        <p>&nbsp;&nbsp;<span class="text-purple-400">return</span> df.drop_duplicates()</p>
                     </div>
                     
-                    <div class="flex gap-2 mt-4">
-                        <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">Python</span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">BeautifulSoup</span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">Pandas</span>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-medium">Python</span>
+                        <span class="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-medium">BeautifulSoup</span>
+                        <span class="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-medium">Pandas</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- SECTION: RESUME -->
+        <!-- === RESUME (Timeline Style) === -->
         <div id="resume" class="content-section max-w-4xl mx-auto">
-            <h2 class="text-3xl font-bold text-gray-800 mb-8">📄 Curriculum Vitae</h2>
+            <h2 class="text-3xl font-bold text-slate-800 mb-8 flex items-center gap-3">
+                <span class="w-2 h-8 bg-blue-600 rounded-full"></span>
+                <span class="lang-en">Curriculum Vitae</span>
+                <span class="lang-zh">个人简历</span>
+            </h2>
             
-            <div class="bg-white p-8 rounded-xl shadow-sm mb-8">
-                <h3 class="text-xl font-bold text-blue-600 mb-6 border-b pb-2">🎓 Education</h3>
-                
-                <div class="mb-6">
-                    <div class="flex justify-between items-baseline mb-1">
-                        <h4 class="text-lg font-bold text-gray-800">Master of Artificial Intelligence</h4>
-                        <span class="text-sm text-gray-500">Current</span>
-                    </div>
-                    <p class="text-gray-600 font-medium">Monash University, Malaysia</p>
-                    <p class="text-sm text-gray-500 mt-1">Focus: Machine Learning, Data Exploration, AI Ethics.</p>
-                </div>
-                
-                <div class="mb-6">
-                    <div class="flex justify-between items-baseline mb-1">
-                        <h4 class="text-lg font-bold text-gray-800">MBA (Master of Business Administration)</h4>
-                        <span class="text-sm text-gray-500">2024 - 2025</span>
-                    </div>
-                    <p class="text-gray-600 font-medium">European Open University</p>
-                </div>
-                
-                <div>
-                    <div class="flex justify-between items-baseline mb-1">
-                        <h4 class="text-lg font-bold text-gray-800">BA in Broadcasting & Hosting</h4>
-                        <span class="text-sm text-gray-500">2019 - 2023</span>
-                    </div>
-                    <p class="text-gray-600 font-medium">Xi'an Jiaotong University City College</p>
-                </div>
-            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                <!-- Education Section -->
+                <div class="mb-10 relative">
+                    <h3 class="text-xl font-bold text-blue-600 mb-6 flex items-center gap-2">
+                        <i class="fas fa-graduation-cap"></i> 
+                        <span class="lang-en">Education</span><span class="lang-zh">教育背景</span>
+                    </h3>
+                    
+                    <!-- Timeline Line -->
+                    <div class="absolute left-2 top-10 bottom-0 w-0.5 bg-slate-200"></div>
 
-            <div class="bg-white p-8 rounded-xl shadow-sm">
-                <h3 class="text-xl font-bold text-blue-600 mb-6 border-b pb-2">💼 Experience</h3>
-                
-                <div>
-                    <div class="flex justify-between items-baseline mb-1">
-                        <h4 class="text-lg font-bold text-gray-800">New Media Operations Intern</h4>
-                        <span class="text-sm text-gray-500">Mar 2023 - May 2024</span>
+                    <!-- Item 1 -->
+                    <div class="ml-8 mb-8 relative">
+                        <div class="absolute -left-8 top-1.5 w-4 h-4 rounded-full bg-blue-500 border-4 border-white shadow-sm"></div>
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-1">
+                            <h4 class="text-lg font-bold text-slate-800">
+                                <span class="lang-en">Master of Artificial Intelligence</span>
+                                <span class="lang-zh">人工智能硕士 (Master of AI)</span>
+                            </h4>
+                            <span class="text-sm font-semibold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">Current</span>
+                        </div>
+                        <p class="text-slate-700 font-medium">Monash University</p>
+                        <p class="text-sm text-slate-500 mt-1">
+                            <span class="lang-en">Focus: Machine Learning, Data Exploration, AI Ethics.</span>
+                            <span class="lang-zh">主修：机器学习，数据探索，AI 伦理。</span>
+                        </p>
                     </div>
-                    <p class="text-gray-600 font-medium mb-3">Yan'an Jian'er Youwei Culture Media</p>
-                    <ul class="list-disc list-inside text-sm text-gray-600 space-y-2">
-                        <li>Analyzed user engagement data to optimize content strategy.</li>
-                        <li>Coordinated cross-functional teams to ensure high-quality media output.</li>
-                        <li>Developed logical content frameworks for diverse audiences.</li>
-                    </ul>
+
+                    <!-- Item 2 -->
+                    <div class="ml-8 mb-8 relative">
+                        <div class="absolute -left-8 top-1.5 w-4 h-4 rounded-full bg-slate-300 border-4 border-white"></div>
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-1">
+                            <h4 class="text-lg font-bold text-slate-800">
+                                <span class="lang-en">MBA (Master of Business Administration)</span>
+                                <span class="lang-zh">工商管理硕士 (MBA)</span>
+                            </h4>
+                            <span class="text-sm text-slate-400">2024 - 2025</span>
+                        </div>
+                        <p class="text-slate-700 font-medium">European Open University</p>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="ml-8 relative">
+                        <div class="absolute -left-8 top-1.5 w-4 h-4 rounded-full bg-slate-300 border-4 border-white"></div>
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-1">
+                            <h4 class="text-lg font-bold text-slate-800">
+                                <span class="lang-en">BA in Broadcasting & Hosting</span>
+                                <span class="lang-zh">播音与主持艺术 学士</span>
+                            </h4>
+                            <span class="text-sm text-slate-400">2019 - 2023</span>
+                        </div>
+                        <p class="text-slate-700 font-medium">
+                            <span class="lang-en">Xi'an Jiaotong University City College</span>
+                            <span class="lang-zh">西安交通大学城市学院</span>
+                        </p>
+                    </div>
+                </div>
+
+                <hr class="border-slate-100 mb-10">
+
+                <!-- Experience Section -->
+                <div class="relative">
+                    <h3 class="text-xl font-bold text-blue-600 mb-6 flex items-center gap-2">
+                        <i class="fas fa-briefcase"></i> 
+                        <span class="lang-en">Experience</span><span class="lang-zh">工作经历</span>
+                    </h3>
+                    
+                    <div class="absolute left-2 top-10 bottom-0 w-0.5 bg-slate-200"></div>
+
+                    <div class="ml-8 relative">
+                        <div class="absolute -left-8 top-1.5 w-4 h-4 rounded-full bg-slate-300 border-4 border-white"></div>
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-1">
+                            <h4 class="text-lg font-bold text-slate-800">
+                                <span class="lang-en">New Media Operations Intern</span>
+                                <span class="lang-zh">新媒体运营实习生</span>
+                            </h4>
+                            <span class="text-sm text-slate-500">Mar 2023 - May 2024</span>
+                        </div>
+                        <p class="text-slate-700 font-medium mb-3">
+                            <span class="lang-en">Yan'an Jian'er Youwei Culture Media</span>
+                            <span class="lang-zh">延安健而有为文化传媒</span>
+                        </p>
+                        <ul class="list-disc list-inside text-sm text-slate-600 space-y-2 bg-slate-50 p-4 rounded-lg">
+                            <li>
+                                <span class="lang-en">Analyzed user engagement data to optimize content strategy.</span>
+                                <span class="lang-zh">分析用户互动数据以优化内容策略。</span>
+                            </li>
+                            <li>
+                                <span class="lang-en">Coordinated cross-functional teams to ensure high-quality media output.</span>
+                                <span class="lang-zh">协调跨职能团队，确保高质量的媒体内容输出。</span>
+                            </li>
+                            <li>
+                                <span class="lang-en">Developed logical content frameworks for diverse audiences.</span>
+                                <span class="lang-zh">为不同受众群体开发逻辑严密的内容框架。</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- SECTION: CONTACT -->
-        <div id="contact" class="content-section max-w-2xl mx-auto">
-            <h2 class="text-3xl font-bold text-gray-800 mb-8">📬 Let's Connect</h2>
+        <!-- === CONTACT === -->
+        <div id="contact" class="content-section max-w-3xl mx-auto">
+            <h2 class="text-3xl font-bold text-slate-800 mb-8 flex items-center gap-3">
+                <span class="w-2 h-8 bg-blue-600 rounded-full"></span>
+                <span class="lang-en">Let's Connect</span>
+                <span class="lang-zh">联系我</span>
+            </h2>
             
-            <div class="bg-white p-8 rounded-xl shadow-lg">
-                <p class="text-gray-600 mb-6">I am currently available for freelance projects and part-time roles. Feel free to reach out!</p>
+            <div class="bg-white p-8 rounded-2xl shadow-lg border border-slate-100">
+                <p class="text-slate-600 mb-6 text-center">
+                    <span class="lang-en">I am currently available for freelance projects and part-time roles.</span>
+                    <span class="lang-zh">我目前开放接收自由职业项目和兼职机会，欢迎联系。</span>
+                </p>
                 
-                <form onsubmit="event.preventDefault(); alert('Message sent! (Simulation)');">
-                    <div class="mb-4">
-                        <label class="block text-gray-700 text-sm font-bold mb-2">Name</label>
-                        <input type="text" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Recruiter Name">
+                <!-- 
+                     重要提示：
+                     请去 https://formspree.io/ 注册一个免费账号。
+                     创建一个 New Form，复制那个类似 "https://formspree.io/f/mqk....." 的链接。
+                     替换掉下面 form 标签里的 action="..." 内容。
+                -->
+                <form action="https://formspree.io/f/PLACEHOLDER_ID" method="POST" class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-slate-700 text-sm font-bold mb-2">
+                                <span class="lang-en">Name</span><span class="lang-zh">姓名</span>
+                            </label>
+                            <input type="text" name="name" required class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-50" placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label class="block text-slate-700 text-sm font-bold mb-2">
+                                <span class="lang-en">Email</span><span class="lang-zh">邮箱</span>
+                            </label>
+                            <input type="email" name="email" required class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-50" placeholder="you@example.com">
+                        </div>
                     </div>
-                    <div class="mb-4">
-                        <label class="block text-gray-700 text-sm font-bold mb-2">Email</label>
-                        <input type="email" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="email@company.com">
+                    <div>
+                        <label class="block text-slate-700 text-sm font-bold mb-2">
+                            <span class="lang-en">Message</span><span class="lang-zh">留言内容</span>
+                        </label>
+                        <textarea name="message" required class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-50 h-32" placeholder="Hi Jian..."></textarea>
                     </div>
-                    <div class="mb-6">
-                        <label class="block text-gray-700 text-sm font-bold mb-2">Message</label>
-                        <textarea class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 h-32" placeholder="Hi Jian, we'd like to interview you..."></textarea>
-                    </div>
-                    <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition">
-                        Send Message
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition transform hover:scale-[1.01] shadow-md">
+                        <span class="lang-en">Send Message</span><span class="lang-zh">发送消息</span>
                     </button>
+                    <p class="text-xs text-gray-400 text-center mt-2">
+                        <span class="lang-en">* Powered by Formspree</span>
+                        <span class="lang-zh">* 消息服务由 Formspree 提供</span>
+                    </p>
                 </form>
             </div>
         </div>
@@ -318,14 +453,30 @@
     </main>
 
     <script>
-        function showSection(sectionId, navElement) {
-            // Hide all sections
-            document.querySelectorAll('.content-section').forEach(el => el.classList.remove('active'));
+        // Language Toggle Logic
+        let currentLang = 'en';
+
+        function toggleLanguage() {
+            const enElements = document.querySelectorAll('.lang-en');
+            const zhElements = document.querySelectorAll('.lang-zh');
             
-            // Show target section
+            if (currentLang === 'en') {
+                // Switch to Chinese
+                enElements.forEach(el => el.style.display = 'none');
+                zhElements.forEach(el => el.style.display = 'inline');
+                currentLang = 'zh';
+            } else {
+                // Switch to English
+                enElements.forEach(el => el.style.display = 'inline');
+                zhElements.forEach(el => el.style.display = 'none');
+                currentLang = 'en';
+            }
+        }
+
+        function showSection(sectionId, navElement) {
+            document.querySelectorAll('.content-section').forEach(el => el.classList.remove('active'));
             document.getElementById(sectionId).classList.add('active');
             
-            // Update active nav state
             if(navElement) {
                 document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
                 navElement.classList.add('active');
