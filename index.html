@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jian Huang | AI & Developer Portfolio</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Custom Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f3f4f6;
+        }
+        .sidebar {
+            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+        }
+        .nav-item {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .nav-item:hover, .nav-item.active {
+            background-color: #3b82f6;
+            padding-left: 1.5rem;
+        }
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .content-section.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .skill-bar-bg {
+            background-color: #e5e7eb;
+            border-radius: 9999px;
+            height: 12px;
+            overflow: hidden;
+        }
+        .skill-bar-fill {
+            height: 100%;
+            border-radius: 9999px;
+            background-color: #10b981;
+            transition: width 1s ease-in-out;
+        }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden">
+
+    <!-- Sidebar (Left) -->
+    <aside class="sidebar w-64 flex-shrink-0 flex flex-col justify-between hidden md:flex h-full shadow-xl">
+        <div class="p-6 text-center">
+            <!-- 头像图片链接，可替换为你自己的 -->
+            <img src="https://cdn-icons-png.flaticon.com/512/4140/4140037.png" alt="Profile" class="w-24 h-24 rounded-full mx-auto border-4 border-blue-500 mb-4 bg-white p-1">
+            <h1 class="text-xl font-bold">Jian Huang</h1>
+            <p class="text-blue-300 text-sm">AI Master's Candidate</p>
+            <p class="text-gray-400 text-xs mt-1">Monash University, Malaysia</p>
+        </div>
+
+        <nav class="flex-1 px-4 py-4 space-y-2">
+            <div class="nav-item active rounded p-3 flex items-center gap-3" onclick="showSection('home', this)">
+                <i class="fas fa-home w-6"></i> <span>Home</span>
+            </div>
+            <div class="nav-item rounded p-3 flex items-center gap-3" onclick="showSection('projects', this)">
+                <i class="fas fa-laptop-code w-6"></i> <span>Projects</span>
+            </div>
+            <div class="nav-item rounded p-3 flex items-center gap-3" onclick="showSection('resume', this)">
+                <i class="fas fa-file-alt w-6"></i> <span>Resume</span>
+            </div>
+            <div class="nav-item rounded p-3 flex items-center gap-3" onclick="showSection('contact', this)">
+                <i class="fas fa-envelope w-6"></i> <span>Contact</span>
+            </div>
+        </nav>
+
+        <div class="p-6 text-xs text-gray-500 text-center border-t border-gray-700">
+            <p>📍 Subang Jaya, Malaysia</p>
+            <p class="mt-2">Built with HTML & Tailwind</p>
+        </div>
+    </aside>
+
+    <!-- Mobile Header -->
+    <div class="md:hidden fixed w-full bg-slate-800 text-white z-50 flex justify-between items-center p-4 shadow-md top-0">
+        <span class="font-bold text-lg">Jian Huang</span>
+        <button onclick="toggleMobileMenu()" class="text-white"><i class="fas fa-bars text-2xl"></i></button>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-slate-900 bg-opacity-95 z-40 hidden flex flex-col justify-center items-center space-y-8 text-white text-xl md:hidden">
+        <button onclick="mobileNav('home')" class="hover:text-blue-400">Home</button>
+        <button onclick="mobileNav('projects')" class="hover:text-blue-400">Projects</button>
+        <button onclick="mobileNav('resume')" class="hover:text-blue-400">Resume</button>
+        <button onclick="mobileNav('contact')" class="hover:text-blue-400">Contact</button>
+        <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 text-3xl">&times;</button>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 overflow-y-auto p-8 md:p-12 relative mt-16 md:mt-0">
+        
+        <!-- SECTION: HOME -->
+        <div id="home" class="content-section active max-w-4xl mx-auto">
+            <header class="mb-10">
+                <h2 class="text-4xl font-bold text-gray-800 mb-2">👋 Hello, I'm Jian.</h2>
+                <h3 class="text-xl text-blue-600 font-semibold">Bridging Human Creativity & AI Logic</h3>
+            </header>
+            
+            <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-blue-500 mb-8">
+                <p class="text-gray-700 leading-relaxed text-lg">
+                    I am a Master's student in <strong>Artificial Intelligence</strong> with a unique background in <strong>Media Operations</strong>. 
+                    I combine <span class="bg-yellow-100 px-1 rounded">technical coding skills (Python/HarmonyOS)</span> with 
+                    <span class="bg-yellow-100 px-1 rounded">linguistic sensitivity</span> to build high-quality AI solutions.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <div class="bg-white p-5 rounded-lg shadow hover:shadow-md transition">
+                    <div class="text-blue-500 text-3xl mb-3"><i class="fas fa-robot"></i></div>
+                    <h4 class="font-bold text-gray-800 mb-2">AI & Data</h4>
+                    <p class="text-gray-600 text-sm">Python, Pandas, Web Scraping, LLM Fine-tuning concepts.</p>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow hover:shadow-md transition">
+                    <div class="text-indigo-500 text-3xl mb-3"><i class="fas fa-mobile-alt"></i></div>
+                    <h4 class="font-bold text-gray-800 mb-2">Development</h4>
+                    <p class="text-gray-600 text-sm">HarmonyOS (ArkTS), Java, Mobile App Logic.</p>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow hover:shadow-md transition">
+                    <div class="text-green-500 text-3xl mb-3"><i class="fas fa-comments"></i></div>
+                    <h4 class="font-bold text-gray-800 mb-2">Communication</h4>
+                    <p class="text-gray-600 text-sm">English (Professional), Chinese (Native), Content Strategy.</p>
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-bold text-gray-800 mb-6">📊 Technical Proficiency</h3>
+            <div class="space-y-4 bg-white p-6 rounded-lg shadow-sm">
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-sm font-medium text-gray-700">Python (Data Analysis/Scraping)</span>
+                        <span class="text-sm font-medium text-gray-700">85%</span>
+                    </div>
+                    <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 85%"></div></div>
+                </div>
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-sm font-medium text-gray-700">HarmonyOS (ArkTS)</span>
+                        <span class="text-sm font-medium text-gray-700">90%</span>
+                    </div>
+                    <div class="skill-bar-bg"><div class="skill-bar-fill bg-blue-500" style="width: 90%"></div></div>
+                </div>
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-sm font-medium text-gray-700">Prompt Engineering</span>
+                        <span class="text-sm font-medium text-gray-700">80%</span>
+                    </div>
+                    <div class="skill-bar-bg"><div class="skill-bar-fill bg-purple-500" style="width: 80%"></div></div>
+                </div>
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-sm font-medium text-gray-700">English Communication</span>
+                        <span class="text-sm font-medium text-gray-700">85%</span>
+                    </div>
+                    <div class="skill-bar-bg"><div class="skill-bar-fill bg-yellow-500" style="width: 85%"></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION: PROJECTS -->
+        <div id="projects" class="content-section max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">💻 Project Experience</h2>
+            
+            <!-- Project 1 -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-8 flex flex-col md:flex-row border border-gray-100">
+                <div class="p-8 flex-1">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800">Qinban (HarmonyOS Native App)</h3>
+                            <p class="text-sm text-blue-600 font-semibold mb-4">Independent Full-Stack Developer</p>
+                        </div>
+                        <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full font-bold">MVP Delivered</span>
+                    </div>
+                    
+                    <p class="text-gray-600 mb-4">
+                        A family connection app built on the HarmonyOS ecosystem to enhance interaction between family members.
+                    </p>
+                    
+                    <div class="mb-4">
+                        <h4 class="font-bold text-gray-700 text-sm mb-2">Key Contributions:</h4>
+                        <ul class="list-disc list-inside text-gray-600 text-sm space-y-1">
+                            <li>Managed full lifecycle from UI/UX design to logic implementation.</li>
+                            <li>Implemented <strong>distributed data management</strong> for syncing.</li>
+                            <li>Validated stability on real devices (Beta).</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="flex gap-2 mt-4">
+                        <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">ArkTS</span>
+                        <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">ArkUI</span>
+                        <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">DevEco Studio</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-8 flex flex-col md:flex-row border border-gray-100">
+                <div class="p-8 flex-1">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800">Automated Web Data Pipeline</h3>
+                            <p class="text-sm text-purple-600 font-semibold mb-4">Data Engineering & Automation</p>
+                        </div>
+                        <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full font-bold">Python Script</span>
+                    </div>
+                    
+                    <p class="text-gray-600 mb-4">
+                        Designed a Python script to automate the extraction of unstructured data from web sources for analysis.
+                    </p>
+                    
+                    <div class="bg-slate-800 p-4 rounded-md mb-4 font-mono text-xs text-green-400 overflow-x-auto">
+                        <p># Sample Logic</p>
+                        <p>import pandas as pd</p>
+                        <p>def clean_data(raw_file):</p>
+                        <p>&nbsp;&nbsp;df = pd.read_csv(raw_file)</p>
+                        <p>&nbsp;&nbsp;df.dropna(inplace=True) # Remove nulls</p>
+                        <p>&nbsp;&nbsp;return df</p>
+                    </div>
+                    
+                    <div class="flex gap-2 mt-4">
+                        <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">Python</span>
+                        <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">BeautifulSoup</span>
+                        <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">Pandas</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION: RESUME -->
+        <div id="resume" class="content-section max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">📄 Curriculum Vitae</h2>
+            
+            <div class="bg-white p-8 rounded-xl shadow-sm mb-8">
+                <h3 class="text-xl font-bold text-blue-600 mb-6 border-b pb-2">🎓 Education</h3>
+                
+                <div class="mb-6">
+                    <div class="flex justify-between items-baseline mb-1">
+                        <h4 class="text-lg font-bold text-gray-800">Master of Artificial Intelligence</h4>
+                        <span class="text-sm text-gray-500">Current</span>
+                    </div>
+                    <p class="text-gray-600 font-medium">Monash University, Malaysia</p>
+                    <p class="text-sm text-gray-500 mt-1">Focus: Machine Learning, Data Exploration, AI Ethics.</p>
+                </div>
+                
+                <div class="mb-6">
+                    <div class="flex justify-between items-baseline mb-1">
+                        <h4 class="text-lg font-bold text-gray-800">MBA (Master of Business Administration)</h4>
+                        <span class="text-sm text-gray-500">2024 - 2025</span>
+                    </div>
+                    <p class="text-gray-600 font-medium">European Open University</p>
+                </div>
+                
+                <div>
+                    <div class="flex justify-between items-baseline mb-1">
+                        <h4 class="text-lg font-bold text-gray-800">BA in Broadcasting & Hosting</h4>
+                        <span class="text-sm text-gray-500">2019 - 2023</span>
+                    </div>
+                    <p class="text-gray-600 font-medium">Xi'an Jiaotong University City College</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-xl shadow-sm">
+                <h3 class="text-xl font-bold text-blue-600 mb-6 border-b pb-2">💼 Experience</h3>
+                
+                <div>
+                    <div class="flex justify-between items-baseline mb-1">
+                        <h4 class="text-lg font-bold text-gray-800">New Media Operations Intern</h4>
+                        <span class="text-sm text-gray-500">Mar 2023 - May 2024</span>
+                    </div>
+                    <p class="text-gray-600 font-medium mb-3">Yan'an Jian'er Youwei Culture Media</p>
+                    <ul class="list-disc list-inside text-sm text-gray-600 space-y-2">
+                        <li>Analyzed user engagement data to optimize content strategy.</li>
+                        <li>Coordinated cross-functional teams to ensure high-quality media output.</li>
+                        <li>Developed logical content frameworks for diverse audiences.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION: CONTACT -->
+        <div id="contact" class="content-section max-w-2xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">📬 Let's Connect</h2>
+            
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+                <p class="text-gray-600 mb-6">I am currently available for freelance projects and part-time roles. Feel free to reach out!</p>
+                
+                <form onsubmit="event.preventDefault(); alert('Message sent! (Simulation)');">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Name</label>
+                        <input type="text" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Recruiter Name">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+                        <input type="email" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="email@company.com">
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Message</label>
+                        <textarea class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 h-32" placeholder="Hi Jian, we'd like to interview you..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function showSection(sectionId, navElement) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(el => el.classList.remove('active'));
+            
+            // Show target section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update active nav state
+            if(navElement) {
+                document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+                navElement.classList.add('active');
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function mobileNav(sectionId) {
+            showSection(sectionId);
+            toggleMobileMenu();
+        }
+    </script>
+</body>
+</html>
