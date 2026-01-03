@@ -588,12 +588,12 @@
 
     <!-- Floating Navigation -->
     <div class="floating-nav">
-        <div class="nav-dot active" data-section="HOME" onclick="scrollToSection('home')"></div>
-        <div class="nav-dot" data-section="ABOUT" onclick="scrollToSection('about')"></div>
-        <div class="nav-dot" data-section="PROJECTS" onclick="scrollToSection('projects')"></div>
-        <div class="nav-dot" data-section="SKILLS" onclick="scrollToSection('skills')"></div>
-        <div class="nav-dot" data-section="EXPERIENCE" onclick="scrollToSection('experience')"></div>
-        <div class="nav-dot" data-section="CONTACT" onclick="scrollToSection('contact')"></div>
+        <div class="nav-dot active" data-section="HOME" onclick="scrollToSection('home')" tabindex="0" role="button" aria-label="Navigate to Home section" onkeypress="if(event.key==='Enter')scrollToSection('home')"></div>
+        <div class="nav-dot" data-section="ABOUT" onclick="scrollToSection('about')" tabindex="0" role="button" aria-label="Navigate to About section" onkeypress="if(event.key==='Enter')scrollToSection('about')"></div>
+        <div class="nav-dot" data-section="PROJECTS" onclick="scrollToSection('projects')" tabindex="0" role="button" aria-label="Navigate to Projects section" onkeypress="if(event.key==='Enter')scrollToSection('projects')"></div>
+        <div class="nav-dot" data-section="SKILLS" onclick="scrollToSection('skills')" tabindex="0" role="button" aria-label="Navigate to Skills section" onkeypress="if(event.key==='Enter')scrollToSection('skills')"></div>
+        <div class="nav-dot" data-section="EXPERIENCE" onclick="scrollToSection('experience')" tabindex="0" role="button" aria-label="Navigate to Experience section" onkeypress="if(event.key==='Enter')scrollToSection('experience')"></div>
+        <div class="nav-dot" data-section="CONTACT" onclick="scrollToSection('contact')" tabindex="0" role="button" aria-label="Navigate to Contact section" onkeypress="if(event.key==='Enter')scrollToSection('contact')"></div>
     </div>
 
     <!-- Main Container -->
@@ -1005,22 +1005,44 @@
                         <span class="lang-zh">我目前开放接收自由职业项目和兼职机会，欢迎联系。</span>
                     </p>
                     
+                    <!-- 
+                        IMPORTANT: To enable the contact form, please:
+                        1. Go to https://formspree.io/ and create a free account
+                        2. Create a new form and get your unique form endpoint
+                        3. Replace 'PLACEHOLDER_ID' in the action URL below with your actual Formspree form ID
+                        Example: action="https://formspree.io/f/xvoepqnb"
+                    -->
                     <form class="contact-form" action="https://formspree.io/f/PLACEHOLDER_ID" method="POST">
+                        <label for="contact-name" style="display: block; margin-bottom: 5px; color: #00ffff;">
+                            <span class="lang-en">Name</span>
+                            <span class="lang-zh">姓名</span>
+                        </label>
                         <input 
+                            id="contact-name"
                             type="text" 
                             name="name" 
                             class="form-input" 
                             placeholder="Your Name / 您的姓名" 
                             required>
                         
+                        <label for="contact-email" style="display: block; margin-bottom: 5px; color: #00ffff;">
+                            <span class="lang-en">Email</span>
+                            <span class="lang-zh">邮箱</span>
+                        </label>
                         <input 
+                            id="contact-email"
                             type="email" 
                             name="email" 
                             class="form-input" 
                             placeholder="Your Email / 您的邮箱" 
                             required>
                         
+                        <label for="contact-message" style="display: block; margin-bottom: 5px; color: #00ffff;">
+                            <span class="lang-en">Message</span>
+                            <span class="lang-zh">留言</span>
+                        </label>
                         <textarea 
+                            id="contact-message"
                             name="message" 
                             class="form-textarea" 
                             placeholder="Your Message / 您的留言" 
@@ -1175,10 +1197,11 @@
                 particlesMesh.rotation.x += 0.0002;
                 particlesMesh.rotation.y += 0.0003;
 
-                // Wave effect
+                // Wave effect - optimized
                 const positions = particlesGeometry.attributes.position.array;
+                const time = Date.now() * 0.001;
                 for (let i = 0; i < positions.length; i += 3) {
-                    positions[i + 1] += Math.sin(Date.now() * 0.001 + positions[i]) * 0.002;
+                    positions[i + 1] += Math.sin(time + positions[i]) * 0.002;
                 }
                 particlesGeometry.attributes.position.needsUpdate = true;
 
